@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="stylesheet/css/fontello.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgba(255, 255, 0, 0.314);
+        }
+
+        .xo {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+            display: flex;
+            flex-wrap: wrap;
+            
+            >div {
+                background-color: rgba(255, 166, 0, 0.748);
+                width: 33.333%;
+                height: 33.33%;
+                border: 2px solid black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 40px;
+                cursor: pointer;
+            }
+        }
+        .alertt{
+            opacity: 0;
+            visibility: hidden;
+            position: fixed;
+            top: 25%;
+            left: 39%;
+            background-color: rgba(255, 255, 255, 0.846);
+            width: 350px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px ;
+            >.row{
+                >*{
+                    color: red;
+                }
+            >i{
+                position: absolute;
+                top: 0;right: 0;
+                font-size: 30px;
+                cursor: pointer;
+            }
+            >h1{
+                width: 100%;
+                text-align: center;
+            }
+            }
+        }
+        .row{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="xo">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+    </div>
+    <div class="alertt">
+        <div class="row">
+            <i class="icon-cancel"></i>
+            <h1>ffff</h1>
+        </div>
+    </div>
+</body>
+<script>
+    const xo = document.querySelector('.xo')
+    const div = document.querySelectorAll('.xo>div')
+    const icon_cancel=document.querySelector('.icon-cancel')
+    const h1=document.querySelector('.row>h1')
+    const alertt=document.querySelector('.alertt')
+    xo_game()
+    // function xo_game//
+    function xo_game() {
+        div.forEach((val) => {
+            val.setAttribute('data-status', 'off')
+        })
+        let flag = 1
+        div.forEach((val) => {
+            val.addEventListener('click', () => {
+                let temp = val.getAttribute('data-status')
+                if (temp == 'off') {
+                    if (flag % 2) {
+                        val.innerHTML = 'X'
+                        val.setAttribute('data-status', 'on')
+                        check_the_winner()
+                    } else {
+                        val.innerHTML = 'O'
+                        val.setAttribute('data-status', 'on')
+                        check_the_winner()
+                    }
+                    flag += 1
+                    check_the_table_is_full()
+
+                } else {
+                    alerttt()
+                    h1.innerHTML='The cell is filled'
+                }
+            })
+        })
+    }
+    // function xo_game//
+    
+    // is the table full//
+    function check_the_table_is_full() {
+        let flag = 0
+        div.forEach((val) => {
+            if (val.innerHTML === 'O' || val.innerHTML === 'X') flag += 1
+        })
+        if (flag === 9) {
+            setTimeout(() => {
+                alerttt()
+                h1.innerHTML='The game is tied'
+            }, 400);
+            
+        }
+    }
+    // is the table full//
+
+    // check the winner//
+    check_the_winner()
+    function check_the_winner(){
+       if(div[0].innerHTML==='X' && div[1].innerHTML==='X' && div[2].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[3].innerHTML==='X' && div[4].innerHTML==='X' && div[5].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[6].innerHTML==='X' && div[7].innerHTML==='X' && div[8].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[0].innerHTML==='X' && div[4].innerHTML==='X' && div[8].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[2].innerHTML==='X' && div[4].innerHTML==='X' && div[6].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[0].innerHTML==='X' && div[3].innerHTML==='X' && div[6].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[1].innerHTML==='X' && div[4].innerHTML==='X' && div[7].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+       else if(div[2].innerHTML==='X' && div[5].innerHTML==='X' && div[8].innerHTML==='X'){
+        alerttt()
+        h1.innerHTML='The winner is X'
+       }
+        else if(div[0].innerHTML==='O' && div[1].innerHTML==='O' && div[2].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[3].innerHTML==='O' && div[4].innerHTML==='O' && div[5].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[6].innerHTML==='O' && div[7].innerHTML==='O' && div[8].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[0].innerHTML==='O' && div[4].innerHTML==='O' && div[8].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[2].innerHTML==='O' && div[4].innerHTML==='O' && div[6].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[0].innerHTML==='O' && div[3].innerHTML==='O' && div[6].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[1].innerHTML==='O' && div[4].innerHTML==='O' && div[7].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+        else if(div[2].innerHTML==='O' && div[5].innerHTML==='O' && div[8].innerHTML==='O'){
+        alerttt()
+        h1.innerHTML='The winner is O'
+       }
+    }
+    // check the winner//
+
+    // alert//
+    function alerttt(){
+        alertt.style.opacity='1'
+        alertt.style.visibility='visible'
+    }
+    // alert//
+
+    // cancelling the alert//
+    icon_cancel.addEventListener('click',()=>{
+        alertt.style.opacity='0'
+        alertt.style.visibility='hidden'
+        if(h1.innerHTML==='The game is tied'|| h1.innerHTML==='The winner is X' || h1.innerHTML==='The winner is O') location.reload()
+    })
+    // cancelling the alert//
+</script>
+
+</html>
