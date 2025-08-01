@@ -1,5 +1,5 @@
 # XO_Game
-- [Demo Project]( https://rozhanzahiri.github.io/project-9/)
+- [Demo Project](https://rozhanzahiri.github.io/XO_Game/)
 
 - Developed by Rozhan Zahiri
 
